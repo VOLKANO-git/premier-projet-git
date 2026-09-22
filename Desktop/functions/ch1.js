@@ -3,4 +3,4 @@ function add (x,y){
     let sum = x+y;
     return sum
 }
-console.log(add(1,1));
+console.log(add(12,2020));
