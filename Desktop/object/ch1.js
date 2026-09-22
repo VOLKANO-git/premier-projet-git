@@ -3,6 +3,4 @@ const person = {
     lastname : "laamim",
     firstname : "anas",
     age : 20 ,
-}; console.log(person.lastname);
-   console.log(person.firstname);
-   console.log(person.age);
+}; console.log(`person : ${person.firstname} ${person.lastname} ${person.age}`);
