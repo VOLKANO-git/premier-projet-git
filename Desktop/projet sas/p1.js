@@ -215,7 +215,6 @@ function supprimerCandidat() {
   console.log(`Candidat ${supprime[0].prenom} ${supprime[0].nom} supprimé.`);
 }
 
-
 // 7. Rechercher des candidats
 
 
