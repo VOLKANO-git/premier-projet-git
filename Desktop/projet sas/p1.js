@@ -1,8 +1,30 @@
-const prompt = require('prompt-sync')();
+const prompt = require("prompt-sync")();
 
-
-let candidats = [];
-
+let candidats = [
+  {
+    cin: "AB123456",
+    nom: "ayoub",
+    prenom: "ahouir",
+    partiPolitique: "PAM",
+    age: 40,
+    electeurs: ["15", "17", "s18", "19", "20"],
+  },
+  {
+    cin: "jc111",
+    nom: "abd",
+    prenom: "jalil",
+    partiPolitique: "Independant",
+    age: 25,
+    electeurs: ["e14", "e15", "e16", "e17", "e18", "e19", "e20"],
+  },
+  {
+    cin:"bd127",
+    nom:"zoe",
+    prenom:"maha",
+    age:"32",
+    electeurs:["5","4","3","33"]
+  }
+];
 
 // 1. Ajouter un nouveau candidat
 
@@ -38,7 +60,9 @@ function ajouterCandidat() {
 
   const nom = prompt("Nom : ").trim();
   const prenom = prompt("Prénom : ").trim();
-  let partiPolitique = prompt("Parti politique (laisser vide pour Indépendant) : ").trim();
+  let partiPolitique = prompt(
+    "Parti politique (laisser vide pour Indépendant) : ",
+  ).trim();
   if (partiPolitique === "") {
     partiPolitique = "Indépendant";
   }
@@ -51,14 +75,14 @@ function ajouterCandidat() {
   console.log(`Candidat ${prenom} ${nom} ajouté avec succès !`);
 }
 
-
 // 2. Ajouter plusieurs candidats à la fois
-
 
 function ajouterPlusieursCandidats() {
   console.log("\n--- Ajouter plusieurs candidats ---");
 
-  const nombreTexte = prompt("Combien de candidats voulez-vous ajouter ? ").trim();
+  const nombreTexte = prompt(
+    "Combien de candidats voulez-vous ajouter ? ",
+  ).trim();
   const nombre = Number(nombreTexte);
 
   for (let i = 0; i < nombre; i++) {
@@ -69,9 +93,7 @@ function ajouterPlusieursCandidats() {
   console.log(`\n${nombre} candidat(s) traité(s).`);
 }
 
- 
 // 3. Afficher la liste des candidats
-
 
 function compterVotes(candidat) {
   return candidat.electeurs.length;
@@ -80,7 +102,7 @@ function compterVotes(candidat) {
 function afficherUnCandidat(candidat) {
   console.log(
     `CIN: ${candidat.cin} | Nom: ${candidat.nom} | Prénom: ${candidat.prenom} | ` +
-      `Parti: ${candidat.partiPolitique} | Âge: ${candidat.age} | Votes: ${compterVotes(candidat)}`
+      `Parti: ${candidat.partiPolitique} | Âge: ${candidat.age} | Votes: ${compterVotes(candidat)}`,
   );
 }
 
@@ -113,7 +135,8 @@ function afficherListeCandidats() {
     const parti = prompt("Nom du parti politique recherché : ").trim();
 
     const candidatsFiltres = candidats.filter(
-      (candidat) => candidat.partiPolitique.toLowerCase() === parti.toLowerCase()
+      (candidat) =>
+        candidat.partiPolitique.toLowerCase() === parti.toLowerCase(),
     );
     afficherTableauDeCandidats(candidatsFiltres);
   } else {
@@ -121,9 +144,7 @@ function afficherListeCandidats() {
   }
 }
 
-
 // 4. Voter pour un candidat
-
 
 function electeurADejaVote(cinElecteur) {
   for (const candidat of candidats) {
@@ -141,7 +162,7 @@ function voterPourUnCandidat() {
 
   if (electeurADejaVote(cinElecteur)) {
     console.log(
-      "Vous avez déjà voté et vous n'avez pas le droit de modifier votre vote ni de voter à nouveau"
+      "Vous avez déjà voté et vous n'avez pas le droit de modifier votre vote ni de voter à nouveau",
     );
     return;
   }
@@ -155,12 +176,12 @@ function voterPourUnCandidat() {
   }
 
   candidat.electeurs.push(cinElecteur);
-  console.log(`Merci ! Votre vote pour ${candidat.prenom} ${candidat.nom} a été enregistré.`);
+  console.log(
+    `Merci ! Votre vote pour ${candidat.prenom} ${candidat.nom} a été enregistré.`,
+  );
 }
 
-
 // 5. Modifier les informations d'un candidat
-
 
 function modifierCandidat() {
   console.log("\n--- Modifier les informations d'un candidat ---");
@@ -190,9 +211,7 @@ function modifierCandidat() {
   }
 }
 
-
 // 6. Supprimer un candidat
-
 
 function supprimerCandidat() {
   console.log("\n--- Supprimer un candidat ---");
@@ -217,18 +236,16 @@ function supprimerCandidat() {
 
 // 7. Rechercher des candidats
 
-
 function rechercherCandidats() {
   console.log("\n--- Rechercher des candidats ---");
-const nomRecherche = prompt("Nom recherché : ").trim();
+  const nomRecherche = prompt("Nom recherché : ").trim();
 
-  const resultats = candidats.filter(
-    (candidat) => candidat.nom.toLowerCase().includes(nomRecherche.toLowerCase())
+  const resultats = candidats.filter((candidat) =>
+    candidat.nom.toLowerCase().includes(nomRecherche.toLowerCase()),
   );
 
   afficherTableauDeCandidats(resultats);
-}// 8. Statistiques de l'élection
-
+} // 8. Statistiques de l'élection
 
 function afficherStatistiques() {
   console.log("\n--- Statistiques de l'élection ---");
@@ -249,7 +266,9 @@ function afficherStatistiques() {
     console.log("  Aucun candidat.");
   } else {
     for (let i = 0; i < top3.length; i++) {
-      console.log(`  ${i + 1}. ${top3[i].prenom} ${top3[i].nom} - ${compterVotes(top3[i])} votes`);
+      console.log(
+        `  ${i + 1}. ${top3[i].prenom} ${top3[i].nom} - ${compterVotes(top3[i])} votes`,
+      );
     }
   }
 
@@ -269,9 +288,7 @@ function afficherStatistiques() {
   }
 }
 
-
 // Menu principal
-
 
 function afficherMenu() {
   console.log("\n========== MENU PRINCIPAL ==========");
